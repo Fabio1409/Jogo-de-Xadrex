@@ -10,6 +10,9 @@ namespace JogoDeXadrez.Tabuleiro
             p = new(3, 4);
 
             Console.WriteLine("Posiçao: " + p);
+
+            Tabuleiro tab = new Tabuleiro(8, 8);
+            Console.WriteLine();
         }
     }
 }
