@@ -1,5 +1,5 @@
 ﻿
-namespace JogoDeXadrez.Tabuleiro
+namespace JogoDeXadrez.tabuleiro
 {
     class Tela
     {
