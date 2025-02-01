@@ -1,4 +1,5 @@
 ﻿using JogoDeXadrez.Tabuleiro;
+using JogoDeXadrez.Xadrex;
 using System;
 using Xadrex;
 
@@ -10,14 +11,12 @@ class Program
     {
         try
         {
-            Tabuleiro tab = new Tabuleiro(8, 8);
-            tab.colocarPeca(new Torre(tab, Cor.Preta), new Posicao(0, 0));
-            tab.colocarPeca(new Torre(tab, Cor.Preta), new Posicao(1, 9));
-            tab.colocarPeca(new Rei(tab, Cor.Preta), new Posicao(0, 2));
-            
+            PosicaoXadrex pos = new PosicaoXadrex('c', 7);
+            Console.WriteLine(pos);
 
-            Tela.imprimirTabuleiro(tab);
-            Console.WriteLine();
+            Console.WriteLine(pos.toPosicao());
+
+            Console.ReadLine();
         }
         catch (TabuleiroException e) 
         {
