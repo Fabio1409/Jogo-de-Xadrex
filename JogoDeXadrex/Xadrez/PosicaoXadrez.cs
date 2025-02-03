@@ -1,7 +1,7 @@
 ﻿using JogoDeXadrez.tabuleiro;
 using JogoDeXadrez.Tabuleiro;
 
-namespace JogoDeXadrez.Xadrex
+namespace JogoDeXadrez.Xadrez
 {
      class PosicaoXadrez
     {
