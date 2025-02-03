@@ -1,5 +1,6 @@
 ﻿using JogoDeXadrez.tabuleiro;
 using JogoDeXadrez.Tabuleiro;
+using tabuleiro;
 
 
 namespace Xadrex

@@ -1,21 +1,30 @@
 ﻿
+using JogoDeXadrez.tabuleiro;
 using JogoDeXadrez.Tabuleiro;
-namespace JogoDeXadrez.tabuleiro;
 
 
-class Peca
+
+namespace tabuleiro
 {
-    public Posicao posicao { get; set; }
-    public Cor cor { get; protected set; }
-
-    public int qteMovimentos { get; protected set; }
-    public Tabuleiro tabuleiro { get; protected set; }
-
-    public Peca(Tabuleiro tabuleiro, Cor cor)
+    class Peca
     {
-        this.posicao = null;
-        this.tabuleiro = tabuleiro;
-        this.cor = cor;
-        this.qteMovimentos = 0;
+        public Posicao posicao { get; set; }
+        public Cor cor { get; protected set; }
+
+        public int qteMovimentos { get; protected set; }
+        public Tabuleiro tabuleiro { get; protected set; }
+
+        public Peca(Tabuleiro tabuleiro, Cor cor)
+        {
+            this.posicao = null;
+            this.tabuleiro = tabuleiro;
+            this.cor = cor;
+            this.qteMovimentos = 0;
+        }
+        public void incrementarQteMovimentos()
+        {
+            qteMovimentos++;
+        }
+
     }
-}
+}   

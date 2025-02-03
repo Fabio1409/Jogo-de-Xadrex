@@ -1,40 +1,44 @@
 ﻿
+using JogoDeXadrez.tabuleiro;
 using JogoDeXadrez.Tabuleiro;
-using JogoDeXadrez.Xadrez;
-using Xadrex;
+using Xadrez;
 
 
 
-namespace JogoDeXadrez.tabuleiro;
-
-class Program
+namespace JogoDeXadrez
 {
-    public static void Main(string[] args)
+
+    class Program
     {
-        try
+        public static void Main(string[] args)
         {
-            Tabuleiro tab = new Tabuleiro(8, 8);
-            //PosicaoXadrez pos = new PosicaoXadrez('c', 7);
+            try
+            {
+                PartidaDeXadrez partida = new PartidaDeXadrez();
+
+                while (!partida.terminada)
+                {
+                    Console.Clear();
+                    Tela.imprimirTabuleiro(partida.tab);
+
+                    Console.WriteLine();
+                    Console.Write("Origem: ");
+                    Posicao origem = Tela.lerPosicaoXadrez().toPosicao();
+                    Console.WriteLine("Destino: ");
+                    Posicao Destino = Tela.lerPosicaoXadrez().toPosicao();
+
+                    partida.executaMovimento(origem, Destino);
+                }
+
+               
+
+            }
+            catch (TabuleiroException e)
+            {
+                Console.WriteLine(e.Message);
+            }
 
 
-            //Console.WriteLine(pos);
-
-            //Console.WriteLine(pos.toPosicao());
-
-            tab.colocarPeca(new Torre(tab, Cor.Preta), new Posicao(0, 0));
-            tab.colocarPeca(new Torre(tab, Cor.Preta), new Posicao(1, 3));
-            tab.colocarPeca(new Rei(tab, Cor.Preta), new Posicao(0, 2));
-
-            tab.colocarPeca(new Torre(tab, Cor.Branca), new Posicao(3, 5));
-            //tab.colocarPeca(new Torre(tab, Cor.Branca), new Posicao(1, 8));
-            //tab.colocarPeca(new Rei(tab, Cor.Branca), new Posicao(4, 2));
-            Tela.imprimirTabuleiro(tab);
-           
         }
-        catch (TabuleiroException e) 
-        {
-            Console.WriteLine(e.Message);
-        }
-        
-
-    } }
+    }
+}  

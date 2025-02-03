@@ -1,5 +1,7 @@
 ﻿
 using JogoDeXadrez.Tabuleiro;
+using tabuleiro;
+using Xadrex;
 
 
 namespace JogoDeXadrez.tabuleiro
@@ -48,6 +50,21 @@ namespace JogoDeXadrez.tabuleiro
             p.posicao = pos;
         }
 
+        // METODO RETIRAR PEÇA
+        public Peca retirarPeca(Posicao pos)
+        {
+            if (peca(pos) == null)
+            {
+                return null;
+
+            }
+            Peca aux = peca(pos);
+            aux.posicao = null;
+            pecas[pos.linha, pos.coluna] = null;
+               return aux;
+        }
+       
+
         // TESTAR POSIÇAÕ
         public bool posicaoValida(Posicao pos)
         {
@@ -65,6 +82,11 @@ namespace JogoDeXadrez.tabuleiro
             {
                 throw new TabuleiroException("Posição inválida");
             }
+        }
+
+        internal void colocarPeca(Torre torre, Posicao posicao)
+        {
+            throw new NotImplementedException();
         }
     }
 }
