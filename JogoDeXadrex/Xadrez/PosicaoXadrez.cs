@@ -1,9 +1,9 @@
-﻿using JogoDeXadrez.tabuleiro;
-using JogoDeXadrez.Tabuleiro;
+﻿
+using JogoDeXadrez.Jogo;
 
 namespace JogoDeXadrez.Xadrez
 {
-     class PosicaoXadrez
+     public class PosicaoXadrez
     {
 
         public char coluna {  get; set; }

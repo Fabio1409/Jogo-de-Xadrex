@@ -1,10 +1,10 @@
 ﻿
-using JogoDeXadrez.Tabuleiro;
+using JogoDeXadrez.Jogo;
 using JogoDeXadrez.Xadrez;
-using tabuleiro;
-namespace JogoDeXadrez.tabuleiro
+
+namespace JogoDeXadrez
 {
-    class Tela
+    public class Tela
     {
         public static void imprimirTabuleiro(Tabuleiro tab)
         {
@@ -13,15 +13,32 @@ namespace JogoDeXadrez.tabuleiro
                 Console.Write(8 - i + " ");
                 for (int j = 0; j < tab.Colunas; j++)
                 {
-                    if (tab.peca(i, j) == null)
+                    imprimirPeca(tab.peca(i, j));
+
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine("  a b c d e f g h");
+        }
+        public static void imprimirTabuleiro(Tabuleiro tab, bool[,] posicoesPossiveis)
+        {
+            ConsoleColor fundoOriginal = Console.BackgroundColor;
+            ConsoleColor fundoAlterado = ConsoleColor.DarkGray;
+            for (int i = 0; i < tab.Linhas; i++)
+            {
+                Console.Write(8 - i + " ");
+                for (int j = 0; j < tab.Colunas; j++)
+                {
+                    if (posicoesPossiveis[i, j])
                     {
-                        Console.Write("- ");
+                        Console.BackgroundColor = fundoAlterado;
                     }
                     else
                     {
-                        imprimirPeca(tab.peca(i, j));
-                        Console.Write(" ");
+                        Console.BackgroundColor = fundoOriginal;
                     }
+                    imprimirPeca(tab.peca(i, j));
+                    Console.BackgroundColor = fundoOriginal;
 
                 }
                 Console.WriteLine();
@@ -39,7 +56,14 @@ namespace JogoDeXadrez.tabuleiro
         }
 
         public static void imprimirPeca(Peca peca)
+        {
+            if (peca == null)
             {
+                Console.Write("- ");
+            }
+            else
+            {
+
                 if (peca.cor == Cor.Branca)
                 {
                     Console.Write(peca);
@@ -52,7 +76,10 @@ namespace JogoDeXadrez.tabuleiro
                     Console.ForegroundColor = aux;
 
                 }
+                Console.Write(" ");
             }
+        }
+
     }
 }
 

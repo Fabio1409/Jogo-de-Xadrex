@@ -1,14 +1,8 @@
 ﻿
-using JogoDeXadrez.tabuleiro;
-using JogoDeXadrez.Tabuleiro;
-using JogoDeXadrez.Xadrez;
-using tabuleiro;
-using Xadrex;
-
-
-namespace Xadrez
+using JogoDeXadrez.Jogo;
+namespace JogoDeXadrez.Xadrez
 {
-     class PartidaDeXadrez
+     public class PartidaDeXadrez
     {
         public Tabuleiro tab {  get; private set; }
         private int turno;
@@ -39,16 +33,16 @@ namespace Xadrez
             tab.colocarPeca(new Torre(tab, Cor.Branca), new PosicaoXadrez('d', 2).toPosicao());
             tab.colocarPeca(new Torre(tab, Cor.Branca), new PosicaoXadrez('e', 2).toPosicao());
             tab.colocarPeca(new Torre(tab, Cor.Branca), new PosicaoXadrez('e', 1).toPosicao());
-            tab.colocarPeca(new Rei(tab, Cor.Branca), new PosicaoXadrez('d', 1).toPosicao());
+            tab.colocarPeca(new Rei(tab, Cor.Branca, this), new PosicaoXadrez('d', 1).toPosicao());
 
-            Console.WriteLine();
+            
 
             tab.colocarPeca(new Torre(tab, Cor.Preta), new PosicaoXadrez('c', 7).toPosicao());
             tab.colocarPeca(new Torre(tab, Cor.Preta), new PosicaoXadrez('c', 8).toPosicao());
             tab.colocarPeca(new Torre(tab, Cor.Preta), new PosicaoXadrez('d', 7).toPosicao());
             tab.colocarPeca(new Torre(tab, Cor.Preta), new PosicaoXadrez('e', 7).toPosicao());
-            tab.colocarPeca(new Torre(tab, Cor.Preta), new PosicaoXadrez('e', 9).toPosicao());
-            tab.colocarPeca(new Rei(tab, Cor.Preta), new PosicaoXadrez('d', 8).toPosicao());
+            tab.colocarPeca(new Torre(tab, Cor.Preta), new PosicaoXadrez('e', 8).toPosicao());
+            tab.colocarPeca(new Rei(tab, Cor.Preta, this), new PosicaoXadrez('d', 8).toPosicao());
         }
     }
 }

@@ -1,14 +1,10 @@
 ﻿
-using JogoDeXadrez.tabuleiro;
-using JogoDeXadrez.Tabuleiro;
-using Xadrez;
-
-
-
+using JogoDeXadrez.Xadrez;
+using JogoDeXadrez.Jogo;
 namespace JogoDeXadrez
 {
 
-    class Program
+     public class Program
     {
         public static void Main(string[] args)
         {
@@ -24,7 +20,14 @@ namespace JogoDeXadrez
                     Console.WriteLine();
                     Console.Write("Origem: ");
                     Posicao origem = Tela.lerPosicaoXadrez().toPosicao();
-                    Console.WriteLine("Destino: ");
+
+                    bool[,] posicoesPossiveis = partida.tab.peca(origem).movimentosPossivel();
+
+                    Console.Clear();
+                    Tela.imprimirTabuleiro(partida.tab, posicoesPossiveis);
+
+                    Console.WriteLine();
+                    Console.Write("Destino: ");
                     Posicao Destino = Tela.lerPosicaoXadrez().toPosicao();
 
                     partida.executaMovimento(origem, Destino);
