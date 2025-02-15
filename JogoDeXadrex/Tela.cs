@@ -18,6 +18,11 @@ namespace JogoDeXadrez
             {
                 Console.WriteLine("Xeque");
             }
+            else
+            {
+                Console.WriteLine("XequeMate");
+                Console.WriteLine("Vencedor: " + partida.jogadorAtual);
+            }
         }
         public static void imprimirPecasCapturadas(PartidaDeXadrez partida)
         {
