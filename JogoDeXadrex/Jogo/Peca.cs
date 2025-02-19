@@ -29,7 +29,7 @@ public abstract class Peca
 
     public bool existeMovimentosPossiveis()
     {
-        bool[,] mat = movimentosPossivel();
+        bool[,] mat = movimentosPossiveis();
         for (int i = 0; i < tab.Linhas; i++)
         {
             for (int j = 0; j < tab.Colunas; j++)
@@ -43,13 +43,13 @@ public abstract class Peca
         return false;
     }
 
-    public bool movimentoPossiveis(Posicao pos)
+    public bool movimentoPossivel(Posicao pos)
     {
-      return  movimentosPossivel()[pos.linha, pos.coluna];
+      return  movimentosPossiveis()[pos.linha, pos.coluna];
     }
     
 
-    public abstract bool[,] movimentosPossivel();
+    public abstract bool[,] movimentosPossiveis();
 
 }
 
