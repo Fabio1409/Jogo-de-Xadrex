@@ -206,6 +206,25 @@ namespace JogoDeXadrez.Xadrez
                 tab.colocarPeca(p, origem);
 
             }
+            // # jogada especial roque pequeno
+            if (p is Rei && destino.coluna == origem.coluna  + 2)
+            {
+                Posicao origemTorre = new Posicao(origem.linha, origem.coluna + 3);
+                Posicao destinoTorre = new Posicao(origem.linha, origem.coluna + 1);
+                Peca T = tab.retirarPeca(origemTorre);
+                T.incrementarQteMovimentos();
+                tab.colocarPeca(T, destinoTorre);
+            }
+
+            // # jogada especial roque grande
+            if (p is Rei && destino.coluna == origem.coluna - 2)
+            {
+                Posicao origemTorre = new Posicao(origem.linha, origem.coluna - 4);
+                Posicao destinoTorre = new Posicao(origem.linha, origem.coluna - 1);
+                Peca T = tab.retirarPeca(destinoTorre);
+                T.incrementarQteMovimentos();
+                tab.colocarPeca(T, origemTorre);
+            }
             return pecaCapturada;
         }
 
@@ -213,7 +232,27 @@ namespace JogoDeXadrez.Xadrez
         {
             Peca p = tab.retirarPeca(destino);
             p.decrementarQteMovimentos();
-        }
+
+            // # jogada especial roque pequeno
+            if (p is Rei && destino.coluna == origem.coluna + 2)
+            {
+                Posicao origemTorre = new Posicao(origem.linha, origem.coluna + 3);
+                Posicao destinoTorre = new Posicao(origem.linha, origem.coluna + 1);
+                Peca T = tab.retirarPeca(origemTorre);
+                T.incrementarQteMovimentos();
+                tab.colocarPeca(T, destinoTorre);
+
+            }
+
+            // # jogada especial roque grande
+            if (p is Rei && destino.coluna == origem.coluna - 2)
+            {
+                Posicao origemTorre = new Posicao(origem.linha, origem.coluna - 4);
+                Posicao destinoTorre = new Posicao(origem.linha, origem.coluna - 1);
+                Peca T = tab.retirarPeca(destinoTorre);
+                T.incrementarQteMovimentos();
+                tab.colocarPeca(T, origemTorre);
+        }   }
 
         public void colocarNovaPeca(char coluna, int linha, Peca peca)
         {

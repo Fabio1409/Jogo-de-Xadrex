@@ -1,5 +1,4 @@
 ﻿
-
 namespace JogoDeXadrez.Jogo;
 
 public abstract class Peca
