@@ -9,6 +9,8 @@ namespace JogoDeXadrez.Xadrez
         public Cor jogadorAtual { get; private set; }
         public bool terminada { get; private set; }
         public bool xeque {  get; private set; }
+        public Peca vulneravelInPassant { get; private set; }
+
 
         private HashSet<Peca> pecas;
         private HashSet<Peca> capturadas;
@@ -22,6 +24,7 @@ namespace JogoDeXadrez.Xadrez
             xeque = false;
             pecas = new HashSet<Peca>();
             capturadas = new HashSet<Peca>();
+            vulneravelInPassant = null;
             colocarPecas();
         }
 
@@ -48,8 +51,23 @@ namespace JogoDeXadrez.Xadrez
             {
                 terminada = true;
             }
-            turno++;
-            mudaJogador();
+            else
+            {
+                turno++;
+                mudaJogador();
+            }
+            Peca p = tab.peca(destino);
+            // # jogada especial en passant
+            if (p is Peao &&(destino.linha == origem.linha - 2 || destino.linha == origem.linha + 2))
+            {
+                vulneravelInPassant = p;
+            }
+            else
+            {
+                vulneravelInPassant = null;
+
+            }
+            
         }
 
         public void validaPosicaoDeOrigem(Posicao pos)

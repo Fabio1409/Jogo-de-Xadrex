@@ -7,9 +7,10 @@ namespace JogoDeXadrez.Xadrez
 {
     class Peao : Peca
     {
-        public Peao(Tabuleiro tab, Cor cor) : base(tab, cor)
+        private PartidaDeXadrez partida;
+        public Peao(Tabuleiro tab, Cor cor, PartidaDeXadrez partida) : base(tab, cor)
         {
-
+            this.partida = partida;
         }
         public override string ToString()
         {
@@ -51,7 +52,7 @@ namespace JogoDeXadrez.Xadrez
                     mat[pos.linha, pos.coluna] = true;
                 }
 
-                 pos.definirValores(posicao.linha - 1, posicao.coluna - 1);
+                pos.definirValores(posicao.linha - 1, posicao.coluna - 1);
                 if (tab.posicaoValida(pos) && existeInimigo(pos))
                 {
                     mat[pos.linha, pos.coluna] = true;
@@ -62,6 +63,24 @@ namespace JogoDeXadrez.Xadrez
                 {
                     mat[pos.linha, pos.coluna] = true;
                 }
+
+                // # jogada especial en Passant
+                if (posicao.linha == 3)
+                {
+                    Posicao esquerda = new Posicao(posicao.linha, posicao.coluna - 1);
+                    if (tab.posicaoValida(esquerda) && existeInimigo(esquerda) && tab.peca(esquerda) == partida.vulneravelInPassant)
+                    {
+                        mat[esquerda.linha, esquerda.coluna] = true;
+                    }
+                }
+
+                // # jogada especial en Passant
+                Posicao direita = new Posicao(posicao.linha, posicao.coluna + 1);
+                if (tab.posicaoValida(direita) && existeInimigo(direita) && tab.peca(direita) == partida.vulneravelInPassant)
+                {
+                    mat[direita.linha, direita.coluna] = true;
+                }
+
 
             }
             else
@@ -75,7 +94,7 @@ namespace JogoDeXadrez.Xadrez
                 pos.definirValores(posicao.linha + 2, posicao.coluna);
                 if (tab.posicaoValida(pos) && livre(pos) && qteMovimentos == 0)
                 {
-                    mat [pos.coluna, pos.linha] = true; 
+                    mat[pos.coluna, pos.linha] = true;
                 }
 
                 pos.definirValores(posicao.linha + 1, posicao.coluna - 1);
@@ -88,8 +107,27 @@ namespace JogoDeXadrez.Xadrez
                 {
                     mat[pos.linha, pos.coluna] = true;
                 }
+                // # jogada especial en Passant
+                if (posicao.linha == 4)
+                {
+                    Posicao esquerda = new Posicao(posicao.linha, posicao.coluna - 1);
+                    if (tab.posicaoValida(esquerda) && existeInimigo(esquerda) && tab.peca(esquerda) == partida.vulneravelInPassant)
+                    {
+                        mat[esquerda.linha, esquerda.coluna] = true;
+                    }
+                }
+
+                // # jogada especial en Passant
+                Posicao direita = new Posicao(posicao.linha, posicao.coluna + 1);
+                if (tab.posicaoValida(direita) && existeInimigo(direita) && tab.peca(direita) == partida.vulneravelInPassant)
+                {
+                    mat[direita.linha, direita.coluna] = true;
+                }
+
+
             }
             return mat;
         }
     }
 }
+
